@@ -28,6 +28,7 @@
         <activity android:name=".Login"></activity>
         <activity android:name=".Device"></activity>
         <activity android:name=".ControlLight"></activity>
+        <activity android:name=".ControlDoorlock"></activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>

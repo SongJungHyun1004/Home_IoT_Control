@@ -12,7 +12,6 @@ import androidx.cardview.widget.CardView;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
@@ -21,8 +20,11 @@ import org.json.JSONObject;
 public class Device extends AppCompatActivity {
     static boolean on = false;
     static boolean on2 = false;
-    static String pubStateTopic = "light/state";
-    static String subStateTopic = "light/state1";
+    static boolean open = false;
+    static String pubStateTopic1 = "light/state";
+    static String subStateTopic1 = "light/state1";
+//    static String pubStateTopic2 = "doorlock/state";
+//    static String subStateTopic2 = "doorlock/state1";
     MqttClient client;
 
     public Device() throws MqttException {
@@ -35,7 +37,7 @@ public class Device extends AppCompatActivity {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
-                if (subStateTopic.equals(topic)) {
+                if (subStateTopic1.equals(topic)) {
                     String jsonStr = new String(message.getPayload());
                     try {
                         JSONObject json = new JSONObject(jsonStr);
@@ -50,6 +52,18 @@ public class Device extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+//                if (subStateTopic2.equals(topic)) {
+//                    String jsonStr = new String(message.getPayload());
+//                    try {
+//                        JSONObject json = new JSONObject(jsonStr);
+//                        String doorlockState = json.getString("doorlock");
+//                        System.out.println("doorlock State : ");
+//                        System.out.println(doorlockState);
+//                        open = doorlockState.equals("ON");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
             }
 
             @Override
@@ -57,8 +71,10 @@ public class Device extends AppCompatActivity {
                 // Handle MQTT message delivery completion
             }
         });
-        client.publish(pubStateTopic, new MqttMessage("Search".getBytes()));
-        client.subscribe(subStateTopic, 0);
+        client.publish(pubStateTopic1, new MqttMessage("Search".getBytes()));
+        client.subscribe(subStateTopic1, 0);
+//        client.publish(pubStateTopic2, new MqttMessage("Search".getBytes()));
+//        client.subscribe(subStateTopic2, 0);
     }
 
     @Override
@@ -67,6 +83,7 @@ public class Device extends AppCompatActivity {
         setContentView(R.layout.device);
 
         CardView light_cardview = findViewById(R.id.light_cardview);
+        CardView doorlock_cardview = findViewById(R.id.doorlock_cardview);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -78,6 +95,14 @@ public class Device extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Device.this, ControlLight.class);
+                startActivity(intent);
+            }
+        });
+
+        doorlock_cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Device.this, ControlDoorlock.class);
                 startActivity(intent);
             }
         });
@@ -94,7 +119,7 @@ public class Device extends AppCompatActivity {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
-                if (subStateTopic.equals(topic)) {
+                if (subStateTopic1.equals(topic)) {
                     String jsonStr = new String(message.getPayload());
                     try {
                         JSONObject json = new JSONObject(jsonStr);
@@ -109,6 +134,18 @@ public class Device extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+//                if (subStateTopic2.equals(topic)) {
+//                    String jsonStr = new String(message.getPayload());
+//                    try {
+//                        JSONObject json = new JSONObject(jsonStr);
+//                        String doorlockState = json.getString("doorlock");
+//                        System.out.println("doorlock State : ");
+//                        System.out.println(doorlockState);
+//                        open = doorlockState.equals("ON");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
             }
 
             @Override
@@ -117,14 +154,16 @@ public class Device extends AppCompatActivity {
             }
         });
         try {
-            client.publish(pubStateTopic, new MqttMessage("Search".getBytes()));
+            client.publish(pubStateTopic1, new MqttMessage("Search".getBytes()));
+//            client.publish(pubStateTopic2, new MqttMessage("Search".getBytes()));
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             Toast.makeText(Device.this, "기기 정보를 업데이트 했습니다!", Toast.LENGTH_SHORT).show();
-            client.subscribe(subStateTopic, 0);
+            client.subscribe(subStateTopic1, 0);
+//            client.subscribe(subStateTopic2, 0);
         }catch (MqttException e){
             e.printStackTrace();
         }
