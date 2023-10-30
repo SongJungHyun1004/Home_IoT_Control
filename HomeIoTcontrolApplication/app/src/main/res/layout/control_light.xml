@@ -42,4 +42,22 @@
         android:elevation="30dp"
         android:src="@drawable/light_off_button" />
 
+    <TextView
+        android:id="@+id/stt_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="음성인식 결과가 여기에 표시됩니다."
+        android:layout_gravity="center_horizontal" />
+
+    <ImageButton
+        android:id="@+id/stt_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/round"
+        android:elevation="20dp"
+        android:src="@drawable/voice" />
+
 </LinearLayout>

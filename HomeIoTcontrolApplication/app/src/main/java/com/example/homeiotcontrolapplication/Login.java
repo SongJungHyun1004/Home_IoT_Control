@@ -15,7 +15,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class Login extends AppCompatActivity {
     private static MqttClient client;
-    static String MQTTHOST = "tcp://192.168.199.198:1883";
+    static String MQTTHOST = "tcp://192.168.243.198:1883";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
