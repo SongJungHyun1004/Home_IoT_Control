@@ -140,7 +140,7 @@ public class ControlLight extends AppCompatActivity {
             client.publish(pubTopic, new MqttMessage("ON".getBytes()));
             client.subscribe(subTopic, 0);
             try {
-                Thread.sleep(4500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -155,7 +155,7 @@ public class ControlLight extends AppCompatActivity {
             client.publish(pubTopic, new MqttMessage("OFF".getBytes()));
             client.subscribe(subTopic, 0);
             try {
-                Thread.sleep(4500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
