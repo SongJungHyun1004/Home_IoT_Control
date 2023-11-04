@@ -10,7 +10,7 @@ Subject : 홈 네트워크의 IoT 제어 어플리케이션
 
 
 ## 🧑‍🚀 Authors
-| <img src="https://github.com/let-s-eat-together/lets-eat-frontend/assets/52782842/33164cb5-9cbd-455d-8fa2-131ab3b4a643" width="150"> | <img src="https://github.com/let-s-eat-together/lets-eat-frontend/assets/52782842/8a540b36-a5cd-406b-9ab3-51a7520d626d" width="150"> |<img src="https://user-images.githubusercontent.com/110437548/235303233-8d14d639-5c5e-4a4b-8702-2beca90085c8.png" width = "150">|
+| <img src="https://github.com/SongJungHyun1004/Home_IoT_Control/assets/44044105/7164b1f5-d008-4172-814e-6bcc6a690ac5" width="150"> | <img src="https://github.com/SongJungHyun1004/Home_IoT_Control/assets/44044105/2e25cf46-36c7-4f56-9cbd-1ca04e004757" width="150"> |<img src="https://github.com/SongJungHyun1004/Home_IoT_Control/assets/44044105/d2bfd021-688b-499f-a4ff-c9c973052a16" width="150">|
 |:-:|:-:|:-:|
 |[송정현](https://github.com/SongJungHyun1004)|[백민현](https://github.com/BaekMinHyeon)|[한우석](https://github.com/hanwooseok1)|
 |App|Controller|Arduino|
