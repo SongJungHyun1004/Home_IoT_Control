@@ -21,6 +21,6 @@ Subject : 홈 네트워크의 IoT 제어 어플리케이션
 
 
 ## ✨ Skills & Tech
-Android, Home Assistant, Docker, Laspberry pi, Python, Java, C, Github
+Android, Home Assistant, Docker, Raspberry pi, Python, Java, C++, AWS IoT Core, Github
 
 
