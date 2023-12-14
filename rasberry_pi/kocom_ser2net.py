@@ -165,7 +165,6 @@ def _chk_sum(data):
             chksum_hex = hex((sum_buf % 256))
             #print ('18번째 데이터:[{}] 체크 환산값:[{}]'.format(hex_list[ix], chksum_hex))
             print(hex_list)
-            print(chksum_hex)
             if hex_list[ix] == chksum_hex:
                 return (True, hex_list[ix] )
             else:
@@ -183,7 +182,7 @@ def _make_chk_sum(payload):
         if ix == 17:
             #전부 더한값에 mod 256에 1더하기하여 헥사값으로 출력
             chksum_hex ='{0:02x}'.format((sum_buf % 256))
-            print ('_make_chk_sum:{}'.format(chksum_hex))
+            #print ('_make_chk_sum:{}'.format(chksum_hex))
     return chksum_hex
 
 
@@ -198,7 +197,6 @@ def _command_search(ser, device='000e', spot='0001'):
     payload = prefix + act_type + device + spot + act_command + act_value + '000000000000'
     chk_sum =_make_chk_sum(_hex_payload_compose(payload))
     compose_send_data = payload + chk_sum + hex_end
-    print("보냄1")
     #print ('보내는데이터 재구성 : {}'.format(compose_send_data))
     ser.write(unhexlify(compose_send_data))
     #응답 대기를 위해 잠시 멈춤
@@ -217,7 +215,6 @@ def _light_act(ser, q, target_light, onff ):
     _command_search(ser)
     time.sleep(3)
     #큐데이터 확보
-    print("hi")
     q_ret = _get_queue_data(q)
     #print ('큐데이터 리턴값{}'.format(q_ret))
     for x in q_ret:
@@ -234,7 +231,6 @@ def _light_act(ser, q, target_light, onff ):
             payload = p_ret['prefix'] + '30bc' + p_ret['device'] + p_ret['spot'] + '0000' + value_join + '000000000000'
             chk_sum =_make_chk_sum(_hex_payload_compose(payload))
             #print ('조명 명령어 페이로드 : {} 체크썸 : {}'.format(payload, chk_sum))
-            print("보냈다")
             ser.write(unhexlify(payload + chk_sum + '0d0d'))
             break
 
@@ -264,8 +260,7 @@ def _get_queue_data(q):
         qdata = q.get()
         buf.append(qdata)
         #print ('queue data : {}'.format(qdata))
-    print("buffer")
-    print(buf)
+    #print(buf)
     return buf
 
 
@@ -364,7 +359,6 @@ def _read_serial_data(q,ser):
                 if chksum_rst[0]:
                     #print ('quing data : {}'.format(joindata))
                     q.put(joindata)
-                    print('hi', joindata)
                     _data_publish_state(joindata, 0)
                 rev_buf= []
                 start_flg = 0
