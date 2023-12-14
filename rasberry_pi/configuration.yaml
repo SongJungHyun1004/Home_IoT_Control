@@ -34,7 +34,7 @@ logger:
 
 
 mqtt:
-  light:
+  - light:
     - name: "light1"
       state_topic: "homeassistant/light/status"
       command_topic: "homeassistant/light/light1/switch"
@@ -52,6 +52,16 @@ mqtt:
       payload_on: "ON"
       payload_off: "OFF"
       optimistic: false
+  
+  - lock:
+    - name: "doorlock"
+      state_topic: "homeassistant/doorlock/status"
+      command_topic: "homeassistant/doorlock/switch"
+      payload_lock: "LOCK"
+      payload_unlock: "UNLOCK"
+      state_locked: "LOCK"
+      state_unlocked: "UNLOCK"
+      
 
 
 
